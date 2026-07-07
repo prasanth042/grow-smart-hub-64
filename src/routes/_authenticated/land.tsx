@@ -90,8 +90,8 @@ function LandPage() {
       id: editing?.id,
       name: String(fd.get("name")),
       area_acres: Number(fd.get("area_acres")),
-      soil_type: (fd.get("soil_type") as string) || null,
-      water_source: (fd.get("water_source") as string) || null,
+      soil_type: ((fd.get("soil_type") as string) || null) as SoilType | null,
+      water_source: ((fd.get("water_source") as string) || null) as WaterSource | null,
       location: (fd.get("location") as string) || null,
       notes: (fd.get("notes") as string) || null,
     });
