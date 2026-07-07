@@ -22,12 +22,15 @@ export const Route = createFileRoute("/_authenticated/land")({
 const SOILS = ["clay","sandy","loamy","silty","peaty","chalky","black","red","alluvial"] as const;
 const WATER = ["rainfed","borewell","canal","river","pond","drip","sprinkler"] as const;
 
+type SoilType = typeof SOILS[number];
+type WaterSource = typeof WATER[number];
+
 type Land = {
   id: string;
   name: string;
   area_acres: number;
-  soil_type: string | null;
-  water_source: string | null;
+  soil_type: SoilType | null;
+  water_source: WaterSource | null;
   location: string | null;
   notes: string | null;
 };
