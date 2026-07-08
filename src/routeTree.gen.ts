@@ -13,9 +13,12 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedWeatherRouteImport } from './routes/_authenticated/weather'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedLandRouteImport } from './routes/_authenticated/land'
+import { Route as AuthenticatedIrrigationRouteImport } from './routes/_authenticated/irrigation'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedCropPlanningRouteImport } from './routes/_authenticated/crop-planning'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -36,6 +39,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedWeatherRoute = AuthenticatedWeatherRouteImport.update({
+  id: '/weather',
+  path: '/weather',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -46,27 +54,44 @@ const AuthenticatedLandRoute = AuthenticatedLandRouteImport.update({
   path: '/land',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedIrrigationRoute = AuthenticatedIrrigationRouteImport.update({
+  id: '/irrigation',
+  path: '/irrigation',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedCropPlanningRoute =
+  AuthenticatedCropPlanningRouteImport.update({
+    id: '/crop-planning',
+    path: '/crop-planning',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/crop-planning': typeof AuthenticatedCropPlanningRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/irrigation': typeof AuthenticatedIrrigationRoute
   '/land': typeof AuthenticatedLandRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/weather': typeof AuthenticatedWeatherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/crop-planning': typeof AuthenticatedCropPlanningRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/irrigation': typeof AuthenticatedIrrigationRoute
   '/land': typeof AuthenticatedLandRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/weather': typeof AuthenticatedWeatherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -74,9 +99,12 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_authenticated/crop-planning': typeof AuthenticatedCropPlanningRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/irrigation': typeof AuthenticatedIrrigationRoute
   '/_authenticated/land': typeof AuthenticatedLandRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/weather': typeof AuthenticatedWeatherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -84,20 +112,35 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/sitemap.xml'
+    | '/crop-planning'
     | '/dashboard'
+    | '/irrigation'
     | '/land'
     | '/profile'
+    | '/weather'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/sitemap.xml' | '/dashboard' | '/land' | '/profile'
+  to:
+    | '/'
+    | '/auth'
+    | '/sitemap.xml'
+    | '/crop-planning'
+    | '/dashboard'
+    | '/irrigation'
+    | '/land'
+    | '/profile'
+    | '/weather'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/sitemap.xml'
+    | '/_authenticated/crop-planning'
     | '/_authenticated/dashboard'
+    | '/_authenticated/irrigation'
     | '/_authenticated/land'
     | '/_authenticated/profile'
+    | '/_authenticated/weather'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -137,6 +180,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/weather': {
+      id: '/_authenticated/weather'
+      path: '/weather'
+      fullPath: '/weather'
+      preLoaderRoute: typeof AuthenticatedWeatherRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/profile': {
       id: '/_authenticated/profile'
       path: '/profile'
@@ -151,6 +201,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLandRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/irrigation': {
+      id: '/_authenticated/irrigation'
+      path: '/irrigation'
+      fullPath: '/irrigation'
+      preLoaderRoute: typeof AuthenticatedIrrigationRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -158,19 +215,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/crop-planning': {
+      id: '/_authenticated/crop-planning'
+      path: '/crop-planning'
+      fullPath: '/crop-planning'
+      preLoaderRoute: typeof AuthenticatedCropPlanningRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCropPlanningRoute: typeof AuthenticatedCropPlanningRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedIrrigationRoute: typeof AuthenticatedIrrigationRoute
   AuthenticatedLandRoute: typeof AuthenticatedLandRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedWeatherRoute: typeof AuthenticatedWeatherRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCropPlanningRoute: AuthenticatedCropPlanningRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedIrrigationRoute: AuthenticatedIrrigationRoute,
   AuthenticatedLandRoute: AuthenticatedLandRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedWeatherRoute: AuthenticatedWeatherRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

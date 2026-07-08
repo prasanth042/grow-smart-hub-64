@@ -143,8 +143,7 @@ function WeatherPage() {
             </div>
             <div className="flex gap-2">
               <Button onClick={() => query && loadByLocation(query)} disabled={loading || !query}>
-                <MapPin className="h-4 w-4 mr-1" /> {t("weatherFor" as never as "location") /* not used */}
-                {t("recommend").slice(0,0)}Search
+                <MapPin className="h-4 w-4 mr-1" /> Search
               </Button>
               <Button variant="outline" onClick={useMyLocation} disabled={loading}>
                 {loading ? t("locating") : t("useMyLocation")}
