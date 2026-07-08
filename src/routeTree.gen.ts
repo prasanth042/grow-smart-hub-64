@@ -17,6 +17,9 @@ import { Route as AuthenticatedWeatherRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedLandRouteImport } from './routes/_authenticated/land'
 import { Route as AuthenticatedIrrigationRouteImport } from './routes/_authenticated/irrigation'
+import { Route as AuthenticatedHarvestRouteImport } from './routes/_authenticated/harvest'
+import { Route as AuthenticatedFertilizerRouteImport } from './routes/_authenticated/fertilizer'
+import { Route as AuthenticatedDiseaseRouteImport } from './routes/_authenticated/disease'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCropPlanningRouteImport } from './routes/_authenticated/crop-planning'
 
@@ -59,6 +62,21 @@ const AuthenticatedIrrigationRoute = AuthenticatedIrrigationRouteImport.update({
   path: '/irrigation',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedHarvestRoute = AuthenticatedHarvestRouteImport.update({
+  id: '/harvest',
+  path: '/harvest',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFertilizerRoute = AuthenticatedFertilizerRouteImport.update({
+  id: '/fertilizer',
+  path: '/fertilizer',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDiseaseRoute = AuthenticatedDiseaseRouteImport.update({
+  id: '/disease',
+  path: '/disease',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -77,6 +95,9 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/crop-planning': typeof AuthenticatedCropPlanningRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/disease': typeof AuthenticatedDiseaseRoute
+  '/fertilizer': typeof AuthenticatedFertilizerRoute
+  '/harvest': typeof AuthenticatedHarvestRoute
   '/irrigation': typeof AuthenticatedIrrigationRoute
   '/land': typeof AuthenticatedLandRoute
   '/profile': typeof AuthenticatedProfileRoute
@@ -88,6 +109,9 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/crop-planning': typeof AuthenticatedCropPlanningRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/disease': typeof AuthenticatedDiseaseRoute
+  '/fertilizer': typeof AuthenticatedFertilizerRoute
+  '/harvest': typeof AuthenticatedHarvestRoute
   '/irrigation': typeof AuthenticatedIrrigationRoute
   '/land': typeof AuthenticatedLandRoute
   '/profile': typeof AuthenticatedProfileRoute
@@ -101,6 +125,9 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/crop-planning': typeof AuthenticatedCropPlanningRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/disease': typeof AuthenticatedDiseaseRoute
+  '/_authenticated/fertilizer': typeof AuthenticatedFertilizerRoute
+  '/_authenticated/harvest': typeof AuthenticatedHarvestRoute
   '/_authenticated/irrigation': typeof AuthenticatedIrrigationRoute
   '/_authenticated/land': typeof AuthenticatedLandRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
@@ -114,6 +141,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/crop-planning'
     | '/dashboard'
+    | '/disease'
+    | '/fertilizer'
+    | '/harvest'
     | '/irrigation'
     | '/land'
     | '/profile'
@@ -125,6 +155,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/crop-planning'
     | '/dashboard'
+    | '/disease'
+    | '/fertilizer'
+    | '/harvest'
     | '/irrigation'
     | '/land'
     | '/profile'
@@ -137,6 +170,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/_authenticated/crop-planning'
     | '/_authenticated/dashboard'
+    | '/_authenticated/disease'
+    | '/_authenticated/fertilizer'
+    | '/_authenticated/harvest'
     | '/_authenticated/irrigation'
     | '/_authenticated/land'
     | '/_authenticated/profile'
@@ -208,6 +244,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIrrigationRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/harvest': {
+      id: '/_authenticated/harvest'
+      path: '/harvest'
+      fullPath: '/harvest'
+      preLoaderRoute: typeof AuthenticatedHarvestRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/fertilizer': {
+      id: '/_authenticated/fertilizer'
+      path: '/fertilizer'
+      fullPath: '/fertilizer'
+      preLoaderRoute: typeof AuthenticatedFertilizerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/disease': {
+      id: '/_authenticated/disease'
+      path: '/disease'
+      fullPath: '/disease'
+      preLoaderRoute: typeof AuthenticatedDiseaseRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -228,6 +285,9 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCropPlanningRoute: typeof AuthenticatedCropPlanningRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedDiseaseRoute: typeof AuthenticatedDiseaseRoute
+  AuthenticatedFertilizerRoute: typeof AuthenticatedFertilizerRoute
+  AuthenticatedHarvestRoute: typeof AuthenticatedHarvestRoute
   AuthenticatedIrrigationRoute: typeof AuthenticatedIrrigationRoute
   AuthenticatedLandRoute: typeof AuthenticatedLandRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
@@ -237,6 +297,9 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCropPlanningRoute: AuthenticatedCropPlanningRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedDiseaseRoute: AuthenticatedDiseaseRoute,
+  AuthenticatedFertilizerRoute: AuthenticatedFertilizerRoute,
+  AuthenticatedHarvestRoute: AuthenticatedHarvestRoute,
   AuthenticatedIrrigationRoute: AuthenticatedIrrigationRoute,
   AuthenticatedLandRoute: AuthenticatedLandRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
