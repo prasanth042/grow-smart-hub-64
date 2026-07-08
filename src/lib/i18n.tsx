@@ -100,7 +100,7 @@ export const dict = {
   liters: { en: "liters", ta: "லிட்டர்" },
   everyNDays: { en: "Every {n} days", ta: "ஒவ்வொரு {n} நாட்களுக்கும்" },
   tryAgain: { en: "Try again", ta: "மீண்டும் முயற்சி" },
-  location: { en: "Location", ta: "இடம்" },
+  
 } satisfies Dict;
 
 export type DictKey = keyof typeof dict;
