@@ -16,9 +16,9 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 type Tile = { key: DictKey; icon: typeof Sprout; to?: string; ready?: boolean };
 const tiles: Tile[] = [
   { key: "landManagement", icon: MapPin, to: "/land", ready: true },
-  { key: "cropPlanning", icon: Sprout },
-  { key: "weather", icon: CloudSun },
-  { key: "irrigation", icon: Droplets },
+  { key: "cropPlanning", icon: Sprout, to: "/crop-planning", ready: true },
+  { key: "weather", icon: CloudSun, to: "/weather", ready: true },
+  { key: "irrigation", icon: Droplets, to: "/irrigation", ready: true },
   { key: "fertilizer", icon: FlaskConical },
   { key: "disease", icon: ScanLine },
   { key: "pest", icon: Bug },
