@@ -21,12 +21,12 @@ const tiles: Tile[] = [
   { key: "irrigation", icon: Droplets, to: "/irrigation", ready: true },
   { key: "fertilizer", icon: FlaskConical, to: "/fertilizer", ready: true },
   { key: "disease", icon: ScanLine, to: "/disease", ready: true },
-  { key: "pest", icon: Bug },
+  { key: "pest", icon: Bug, to: "/disease", ready: true },
   { key: "harvest", icon: Wheat, to: "/harvest", ready: true },
-  { key: "market", icon: LineChart },
-  { key: "expenses", icon: Wallet },
-  { key: "reports", icon: FileBarChart },
-  { key: "chatbot", icon: MessageCircle },
+  { key: "market", icon: LineChart, to: "/market", ready: true },
+  { key: "expenses", icon: Wallet, to: "/expenses", ready: true },
+  { key: "reports", icon: FileBarChart, to: "/reports", ready: true },
+  { key: "chatbot", icon: MessageCircle, to: "/chatbot", ready: true },
 ];
 
 function Dashboard() {

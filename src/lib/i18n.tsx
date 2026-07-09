@@ -127,8 +127,30 @@ export const dict = {
   nextActions: { en: "Next actions", ta: "அடுத்த நடவடிக்கைகள்" },
   harvestTips: { en: "Harvest tips", ta: "அறுவடை குறிப்புகள்" },
   riskFactors: { en: "Risk factors", ta: "ஆபத்து காரணிகள்" },
-  
-  
+  checkPrices: { en: "Check prices", ta: "விலைகளை பார்" },
+  nearbyMarkets: { en: "Nearby markets", ta: "அருகிலுள்ள சந்தைகள்" },
+  bestTimeToSell: { en: "Best time to sell", ta: "விற்க சிறந்த நேரம்" },
+  sellingTips: { en: "Selling tips", ta: "விற்பனை குறிப்புகள்" },
+  sales: { en: "Sales", ta: "விற்பனைகள்" },
+  category: { en: "Category", ta: "வகை" },
+  amount: { en: "Amount", ta: "தொகை" },
+  date: { en: "Date", ta: "தேதி" },
+  quantity: { en: "Quantity", ta: "அளவு" },
+  pricePerKg: { en: "Price per kg", ta: "கிலோ விலை" },
+  addExpense: { en: "Add expense", ta: "செலவு சேர்" },
+  addSale: { en: "Add sale", ta: "விற்பனை சேர்" },
+  totalExpenses: { en: "Total expenses", ta: "மொத்த செலவுகள்" },
+  totalRevenue: { en: "Total revenue", ta: "மொத்த வருவாய்" },
+  profit: { en: "Profit", ta: "லாபம்" },
+  loss: { en: "Loss", ta: "நஷ்டம்" },
+  profitMargin: { en: "Profit margin", ta: "லாப விகிதம்" },
+  expensesByCategory: { en: "Expenses by category", ta: "வகை வாரியாக செலவுகள்" },
+  revenueByCrop: { en: "Revenue by crop", ta: "பயிர் வாரியாக வருவாய்" },
+  noEntries: { en: "No entries yet.", ta: "இன்னும் பதிவுகள் இல்லை." },
+  saved: { en: "Saved", ta: "சேமிக்கப்பட்டது" },
+  optional: { en: "optional", ta: "விருப்பம்" },
+  askAnything: { en: "Ask anything about farming…", ta: "விவசாயம் பற்றி எதுவும் கேளுங்கள்…" },
+  chatIntro: { en: "Ask me about crops, soil, weather, pests, fertilizer, or markets. I'll answer in your language.", ta: "பயிர், மண், வானிலை, பூச்சிகள், உரம் அல்லது சந்தை பற்றி என்னிடம் கேளுங்கள். உங்கள் மொழியில் பதில் தருகிறேன்." },
 } satisfies Dict;
 
 export type DictKey = keyof typeof dict;
