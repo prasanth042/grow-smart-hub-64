@@ -13,15 +13,20 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedWeatherRouteImport } from './routes/_authenticated/weather'
+import { Route as AuthenticatedReportsRouteImport } from './routes/_authenticated/reports'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedMarketRouteImport } from './routes/_authenticated/market'
 import { Route as AuthenticatedLandRouteImport } from './routes/_authenticated/land'
 import { Route as AuthenticatedIrrigationRouteImport } from './routes/_authenticated/irrigation'
 import { Route as AuthenticatedHarvestRouteImport } from './routes/_authenticated/harvest'
 import { Route as AuthenticatedFertilizerRouteImport } from './routes/_authenticated/fertilizer'
+import { Route as AuthenticatedExpensesRouteImport } from './routes/_authenticated/expenses'
 import { Route as AuthenticatedDiseaseRouteImport } from './routes/_authenticated/disease'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCropPlanningRouteImport } from './routes/_authenticated/crop-planning'
+import { Route as AuthenticatedChatbotRouteImport } from './routes/_authenticated/chatbot'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -42,14 +47,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedWeatherRoute = AuthenticatedWeatherRouteImport.update({
   id: '/weather',
   path: '/weather',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedReportsRoute = AuthenticatedReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMarketRoute = AuthenticatedMarketRouteImport.update({
+  id: '/market',
+  path: '/market',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedLandRoute = AuthenticatedLandRouteImport.update({
@@ -72,6 +92,11 @@ const AuthenticatedFertilizerRoute = AuthenticatedFertilizerRouteImport.update({
   path: '/fertilizer',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedExpensesRoute = AuthenticatedExpensesRouteImport.update({
+  id: '/expenses',
+  path: '/expenses',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDiseaseRoute = AuthenticatedDiseaseRouteImport.update({
   id: '/disease',
   path: '/disease',
@@ -88,34 +113,49 @@ const AuthenticatedCropPlanningRoute =
     path: '/crop-planning',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedChatbotRoute = AuthenticatedChatbotRouteImport.update({
+  id: '/chatbot',
+  path: '/chatbot',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/chatbot': typeof AuthenticatedChatbotRoute
   '/crop-planning': typeof AuthenticatedCropPlanningRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/disease': typeof AuthenticatedDiseaseRoute
+  '/expenses': typeof AuthenticatedExpensesRoute
   '/fertilizer': typeof AuthenticatedFertilizerRoute
   '/harvest': typeof AuthenticatedHarvestRoute
   '/irrigation': typeof AuthenticatedIrrigationRoute
   '/land': typeof AuthenticatedLandRoute
+  '/market': typeof AuthenticatedMarketRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/reports': typeof AuthenticatedReportsRoute
   '/weather': typeof AuthenticatedWeatherRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/chatbot': typeof AuthenticatedChatbotRoute
   '/crop-planning': typeof AuthenticatedCropPlanningRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/disease': typeof AuthenticatedDiseaseRoute
+  '/expenses': typeof AuthenticatedExpensesRoute
   '/fertilizer': typeof AuthenticatedFertilizerRoute
   '/harvest': typeof AuthenticatedHarvestRoute
   '/irrigation': typeof AuthenticatedIrrigationRoute
   '/land': typeof AuthenticatedLandRoute
+  '/market': typeof AuthenticatedMarketRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/reports': typeof AuthenticatedReportsRoute
   '/weather': typeof AuthenticatedWeatherRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -123,15 +163,20 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_authenticated/chatbot': typeof AuthenticatedChatbotRoute
   '/_authenticated/crop-planning': typeof AuthenticatedCropPlanningRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/disease': typeof AuthenticatedDiseaseRoute
+  '/_authenticated/expenses': typeof AuthenticatedExpensesRoute
   '/_authenticated/fertilizer': typeof AuthenticatedFertilizerRoute
   '/_authenticated/harvest': typeof AuthenticatedHarvestRoute
   '/_authenticated/irrigation': typeof AuthenticatedIrrigationRoute
   '/_authenticated/land': typeof AuthenticatedLandRoute
+  '/_authenticated/market': typeof AuthenticatedMarketRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/reports': typeof AuthenticatedReportsRoute
   '/_authenticated/weather': typeof AuthenticatedWeatherRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -139,44 +184,59 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/sitemap.xml'
+    | '/chatbot'
     | '/crop-planning'
     | '/dashboard'
     | '/disease'
+    | '/expenses'
     | '/fertilizer'
     | '/harvest'
     | '/irrigation'
     | '/land'
+    | '/market'
     | '/profile'
+    | '/reports'
     | '/weather'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
     | '/sitemap.xml'
+    | '/chatbot'
     | '/crop-planning'
     | '/dashboard'
     | '/disease'
+    | '/expenses'
     | '/fertilizer'
     | '/harvest'
     | '/irrigation'
     | '/land'
+    | '/market'
     | '/profile'
+    | '/reports'
     | '/weather'
+    | '/api/chat'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/sitemap.xml'
+    | '/_authenticated/chatbot'
     | '/_authenticated/crop-planning'
     | '/_authenticated/dashboard'
     | '/_authenticated/disease'
+    | '/_authenticated/expenses'
     | '/_authenticated/fertilizer'
     | '/_authenticated/harvest'
     | '/_authenticated/irrigation'
     | '/_authenticated/land'
+    | '/_authenticated/market'
     | '/_authenticated/profile'
+    | '/_authenticated/reports'
     | '/_authenticated/weather'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -184,6 +244,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -216,6 +277,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/weather': {
       id: '/_authenticated/weather'
       path: '/weather'
@@ -223,11 +291,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedWeatherRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/reports': {
+      id: '/_authenticated/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthenticatedReportsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/profile': {
       id: '/_authenticated/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/market': {
+      id: '/_authenticated/market'
+      path: '/market'
+      fullPath: '/market'
+      preLoaderRoute: typeof AuthenticatedMarketRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/land': {
@@ -258,6 +340,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFertilizerRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/expenses': {
+      id: '/_authenticated/expenses'
+      path: '/expenses'
+      fullPath: '/expenses'
+      preLoaderRoute: typeof AuthenticatedExpensesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/disease': {
       id: '/_authenticated/disease'
       path: '/disease'
@@ -279,30 +368,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCropPlanningRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/chatbot': {
+      id: '/_authenticated/chatbot'
+      path: '/chatbot'
+      fullPath: '/chatbot'
+      preLoaderRoute: typeof AuthenticatedChatbotRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedChatbotRoute: typeof AuthenticatedChatbotRoute
   AuthenticatedCropPlanningRoute: typeof AuthenticatedCropPlanningRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedDiseaseRoute: typeof AuthenticatedDiseaseRoute
+  AuthenticatedExpensesRoute: typeof AuthenticatedExpensesRoute
   AuthenticatedFertilizerRoute: typeof AuthenticatedFertilizerRoute
   AuthenticatedHarvestRoute: typeof AuthenticatedHarvestRoute
   AuthenticatedIrrigationRoute: typeof AuthenticatedIrrigationRoute
   AuthenticatedLandRoute: typeof AuthenticatedLandRoute
+  AuthenticatedMarketRoute: typeof AuthenticatedMarketRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedReportsRoute: typeof AuthenticatedReportsRoute
   AuthenticatedWeatherRoute: typeof AuthenticatedWeatherRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedChatbotRoute: AuthenticatedChatbotRoute,
   AuthenticatedCropPlanningRoute: AuthenticatedCropPlanningRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedDiseaseRoute: AuthenticatedDiseaseRoute,
+  AuthenticatedExpensesRoute: AuthenticatedExpensesRoute,
   AuthenticatedFertilizerRoute: AuthenticatedFertilizerRoute,
   AuthenticatedHarvestRoute: AuthenticatedHarvestRoute,
   AuthenticatedIrrigationRoute: AuthenticatedIrrigationRoute,
   AuthenticatedLandRoute: AuthenticatedLandRoute,
+  AuthenticatedMarketRoute: AuthenticatedMarketRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedReportsRoute: AuthenticatedReportsRoute,
   AuthenticatedWeatherRoute: AuthenticatedWeatherRoute,
 }
 
@@ -314,6 +418,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

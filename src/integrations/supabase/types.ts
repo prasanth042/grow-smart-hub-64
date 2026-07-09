@@ -14,6 +14,47 @@ export type Database = {
   }
   public: {
     Tables: {
+      expenses: {
+        Row: {
+          amount: number
+          category: string
+          created_at: string
+          id: string
+          land_id: string | null
+          note: string | null
+          spent_on: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          category: string
+          created_at?: string
+          id?: string
+          land_id?: string | null
+          note?: string | null
+          spent_on?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          created_at?: string
+          id?: string
+          land_id?: string | null
+          note?: string | null
+          spent_on?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expenses_land_id_fkey"
+            columns: ["land_id"]
+            isOneToOne: false
+            referencedRelation: "lands"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       lands: {
         Row: {
           area_acres: number
@@ -85,6 +126,53 @@ export type Database = {
           village?: string | null
         }
         Relationships: []
+      }
+      sales: {
+        Row: {
+          created_at: string
+          crop: string
+          id: string
+          land_id: string | null
+          market: string | null
+          price_per_kg: number
+          quantity_kg: number
+          sold_on: string
+          total_amount: number | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          crop: string
+          id?: string
+          land_id?: string | null
+          market?: string | null
+          price_per_kg: number
+          quantity_kg: number
+          sold_on?: string
+          total_amount?: number | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          crop?: string
+          id?: string
+          land_id?: string | null
+          market?: string | null
+          price_per_kg?: number
+          quantity_kg?: number
+          sold_on?: string
+          total_amount?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sales_land_id_fkey"
+            columns: ["land_id"]
+            isOneToOne: false
+            referencedRelation: "lands"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
