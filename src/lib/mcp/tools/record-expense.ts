@@ -20,7 +20,7 @@ export default defineTool({
     const { data, error } = await supabaseForUser(ctx)
       .from("expenses")
       .insert({
-        user_id: ctx.getUserId(),
+        user_id: userId,
         amount,
         category,
         spent_on: spent_on ?? new Date().toISOString().slice(0, 10),
