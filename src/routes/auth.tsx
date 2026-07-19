@@ -18,30 +18,46 @@ export const Route = createFileRoute("/auth")({
       { name: "description", content: "Sign in or create your farmer account." },
     ],
   }),
+  validateSearch: (s: Record<string, unknown>) => ({
+    next: typeof s.next === "string" && s.next.startsWith("/") && !s.next.startsWith("//") ? s.next : undefined,
+  }),
   component: AuthPage,
 });
 
 function AuthPage() {
   const { t, lang } = useLang();
   const navigate = useNavigate();
+  const { next } = Route.useSearch();
   const [loading, setLoading] = useState(false);
+
+  const afterAuth = () => {
+    if (next) {
+      window.location.href = next;
+    } else {
+      navigate({ to: "/dashboard", replace: true });
+    }
+  };
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/dashboard", replace: true });
+      if (data.session) afterAuth();
     });
-  }, [navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate, next]);
 
   async function signInWithGoogle() {
     setLoading(true);
-    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
+    const redirectUri = next
+      ? `${window.location.origin}/auth?next=${encodeURIComponent(next)}`
+      : window.location.origin;
+    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: redirectUri });
     if (result.error) {
       toast.error(result.error.message);
       setLoading(false);
       return;
     }
     if (result.redirected) return;
-    navigate({ to: "/dashboard", replace: true });
+    afterAuth();
   }
 
   async function handleEmailAuth(e: React.FormEvent<HTMLFormElement>, mode: "signin" | "signup") {
@@ -58,17 +74,17 @@ function AuthPage() {
           email,
           password,
           options: {
-            emailRedirectTo: window.location.origin + "/dashboard",
+            emailRedirectTo: window.location.origin + (next ?? "/dashboard"),
             data: { full_name: fullName, phone },
           },
         });
         if (error) throw error;
         toast.success(lang === "ta" ? "கணக்கு உருவாக்கப்பட்டது" : "Account created");
-        navigate({ to: "/dashboard", replace: true });
+        afterAuth();
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate({ to: "/dashboard", replace: true });
+        afterAuth();
       }
     } catch (err) {
       toast.error(err instanceof Error ? err.message : String(err));
